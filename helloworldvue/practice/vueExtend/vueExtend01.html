@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门之extend全局方法</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="mount-point"></div>
+<script>
+    // 创建构造器
+    var Profile = Vue.extend({
+        // 新的对象的模板，所有子实例都会拥有此模板
+        template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+        data: function () {   // 创建的Vue实例时，data可以是Object 也可以是Function，但是在扩展
+            return {            // 的时候，data必须是一个函数，而且要返回值奥。
+                firstName: 'Walter',
+                lastName: 'White',
+                alias: 'Heisenberg'
+            }
+        }
+    });
+    // 创建 Profile 实例，并挂载到一个元素上。
+    new Profile().$mount('#mount-point')
+    // .$mount() 方法跟设置 el属性效果是一致的。
+</script>
+</body>
+</html>
